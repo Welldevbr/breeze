@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Welldevbr/breeze-asks">
-  <img alt="Top language" src="https://img.shields.io/github/languages/top/Welldevbr/breeze-asks">
-  <img alt="Last commit" src="https://img.shields.io/github/last-commit/Welldevbr/breeze-asks">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Welldevbr/breeze">
+  <img alt="Top language" src="https://img.shields.io/github/languages/top/Welldevbr/breeze">
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/Welldevbr/breeze">
 </p>
 
 <h1 align="center">
