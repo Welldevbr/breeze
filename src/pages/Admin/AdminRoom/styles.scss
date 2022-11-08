@@ -1,0 +1,104 @@
+$color-primary: #0052a3;
+$color-primary-hover: #0b4075;
+
+$color-secondary: #0096db;
+
+$color-normal: #dadbdc;
+$color-gray: #a8a8b3;
+$color-base: #ffffff;
+$color-gray-light: #e3e3e3;
+
+$color-black: #29292e;
+
+#page-room-admin {
+  header {
+    padding: 2.4rem;
+    border-bottom: 1px solid $color-gray-light;
+
+    .content {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      > img {
+        max-height: 4.5rem;
+      }
+      > div {
+        display: flex;
+        gap: 1.4rem;
+      }
+      Button {
+        height: 4rem;
+      }
+    }
+  }
+
+  main {
+    width: 80rem;
+    margin: 0 auto;
+
+    .room-title {
+      margin: 32px 0 24px;
+      display: flex;
+      align-items: center;
+
+      h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.4rem;
+        color: $color-black;
+
+        margin-bottom: 1rem;
+      }
+
+      span {
+        margin-left: 1.6rem;
+        background: $color-secondary;
+        color: $color-base;
+
+        font-weight: 500;
+        font-size: 1.4rem;
+
+        border-radius: 100rem;
+
+        padding: 0.8rem 1.6rem;
+
+      }
+    }
+
+    .not-questions {
+      font-family: 'Poppins';
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-direction: column;
+
+      text-align: center;
+
+      margin-top: 16rem;
+
+      strong {
+        font-weight: 600;
+        font-size: 1.8rem;
+        line-height: 2.7rem;
+        
+        margin-top: 1.6rem;
+        margin-bottom: .8rem;
+
+        color: $color-black;
+      }
+
+      span {
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 2.1rem;
+
+        color: $color-gray;
+      }
+    }
+  }
+ 
+}

@@ -1,0 +1,141 @@
+$color-primary:  #0052a3;
+
+.question {
+  background: #FFF;
+  border-radius: .8rem;
+  box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.075);
+  padding: 2.4rem;
+
+  & + .question {
+    margin-top: 1rem;
+  }
+
+  
+  &.highlighted {
+    background: #F0F5FF;
+    border: 2px solid $color-primary;
+    
+    footer .user-info .author-info span, small {
+      color: #29292e;
+    }
+  }
+  
+  &.answered {
+    background: #DBDCDD;
+    border: none;
+  }
+
+  p {
+    color: #29292e;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.4rem;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+
+      .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        background: $color-primary;
+    
+        width: 3.4rem;
+        height: 3.4rem;
+        border-radius: 10rem;
+      }
+
+      .author-info {
+        display: flex;
+        flex-direction: column;
+        
+        gap: .4rem;
+
+        span {
+          font-size: 1.4rem;
+          line-height: 1.6rem;
+          font-weight: 500;
+          color: #737380;
+        }
+
+        small {
+          font-size: 1.2rem;
+          font-weight: 500;
+          color: #737380;
+        }
+      }
+
+      img {
+        width: 3.2rem;
+        clip-path: circle();
+      }
+    }
+
+    > div {
+      display: flex;
+      gap: 1.6rem;
+      align-items: flex-end;
+
+      .check-button {
+        &:hover {
+          svg circle, path {
+            stroke: #00B060;
+          }
+        }
+      }
+
+      .answer-button {
+        &:hover {
+          svg path {
+            stroke:  #0096db;
+          }
+        }
+      }
+
+      .delete-button {
+        &:hover {
+          svg path {
+            stroke: #d73754;
+          }
+        }
+      }
+    }
+
+    button {
+      background: transparent;
+
+      &.like-button {
+        display: flex;
+        align-items: inherit;
+        color: #737380;
+
+        outline: none;
+
+        gap: 1rem;
+
+        transition: filter .3s;
+
+        &.liked {
+          color: $color-primary;
+  
+          svg path {
+            stroke: $color-primary;
+          }
+        }
+
+        &:hover {
+          filter: brightness(65%);
+        }
+
+      }
+    }
+
+  }
+}
