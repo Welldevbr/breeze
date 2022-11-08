@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import { database } from '../services/firebase';
@@ -137,12 +137,14 @@ export function Room()  {
             />
           </div>
         </form>
-
+        <ul>
         {
           questions.length >  0 ? (
             questions.map(question => {
               return (
-                <Question
+                
+                  <li key={question.id}>
+                  <Question
                   key={question.id}
                   content={question.content} 
                   author={question.author}
@@ -166,6 +168,8 @@ export function Room()  {
                     </button>
                  ) } 
                 </Question>
+                  </li>
+                
               )
             })
           ):(
@@ -181,6 +185,7 @@ export function Room()  {
             </div>
           )
         }
+        </ul>
       </main>
     </div>
   )
