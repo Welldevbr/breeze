@@ -15,6 +15,7 @@ import './styles.scss'
 
 import { Question } from '../../../components/Question';
 import { database } from '../../../services/firebase';
+import { AlertDialog } from '../../../components/AlertDialog';
 
 
 type RoomParams = {
@@ -24,21 +25,10 @@ type RoomParams = {
 export function AdminRoom()  {
   const navigate = useNavigate();
 
-  const { user } = useAuth()
-
-
   const params = useParams<RoomParams>()
   const roomId: string | any = params.id
 
   const { questions, title } = useRoom( roomId )
-
-  async function handleEndRoom(){
-    await database.ref(`rooms/${roomId}`).update({
-      endedAt: new Date(),
-    })
-
-    navigate('/')
-  }
 
   async function handleCheckeQuestionAsAnswered(questionId: string){
       await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
@@ -58,7 +48,7 @@ export function AdminRoom()  {
       toast.success('Pergunta excluida com sucesso.')
     }
   }
-  
+  //<Button onClick={handleEndRoom} isOutlined>Encerrar Sala</Button>
 
   return (
     <div id="page-room-admin">
@@ -67,7 +57,8 @@ export function AdminRoom()  {
           <img src={logo} alt="letmeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button onClick={handleEndRoom} isOutlined>Encerrar Sala</Button>
+            <AlertDialog />
+            
           </div>
         </div>
       </header>
@@ -136,7 +127,7 @@ export function AdminRoom()  {
                   </li>
                 )
               })
-            ):(
+              ):(
               <div className='not-questions'>
                 <img src={ illustration } alt="" />
                 <strong>
