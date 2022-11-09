@@ -60,20 +60,20 @@ export function AlertDialog() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogContent>
+        <DialogContent style={{display: "flex", justifyContent: "center"}}>
           <DialogContentText 
             textAlign={"center"}
             id="alert-dialog-description"
             style={
               {
                 padding: "20px",
-                margin: "20px",
-                fontSize: "2rem"
+                margin: "40px",
+                fontSize: "2rem",
               }
             }
           >
               Você realmente deseja <br />
-              encerrar a sala?
+              encerrar esta sala?
           </DialogContentText>
         </DialogContent>
         <DialogActions style={{marginInline: "8px"}}>
@@ -92,7 +92,7 @@ export function AlertDialog() {
           <Button 
             style={
               {
-                color: "#0052a3", 
+                color: "#06d6a0", 
                 font: "700 1.6rem Roboto",
                 textTransform: "capitalize",
               }
