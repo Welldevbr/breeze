@@ -13,6 +13,7 @@ import { AuthContext } from '../contexts/AuthContext'
 import { database } from '../services/firebase'
 
 import toast, { Toaster } from 'react-hot-toast'
+import { info } from 'console'
 
 
 export function Home() {
@@ -48,6 +49,13 @@ export function Home() {
       return;
     }
 
+    if (roomRef.val().authorId === user?.id){
+      navigate(`/admin/rooms/${roomCode}`)
+    } else {
+      navigate(`/rooms/${roomCode}`)
+
+    }
+
     if (roomRef.val().endedAt) {
       toast('Esta sala foi encerrada!', {
         icon: '😥',
@@ -55,10 +63,8 @@ export function Home() {
       return;
     }
 
-    navigate(`/rooms/${roomCode}`)
-
-
   }
+  
 
 
   return (

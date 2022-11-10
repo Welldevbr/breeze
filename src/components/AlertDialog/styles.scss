@@ -1,0 +1,23 @@
+.img-closed {
+  width: 30%;
+  margin-bottom: 1.6rem;
+}
+
+.text-modal {
+  strong {
+    font-size: 2.6rem;
+    color: black;
+  }
+  
+  p {
+    font-size: 1.6rem;
+    margin-top: 1.4rem;
+  }
+}
+
+.button-modal {
+  transition: filter 0.3s;
+  &:hover {
+    filter: brightness(90%);
+  }
+}

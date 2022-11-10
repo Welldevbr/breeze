@@ -7,6 +7,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 
+import Closed from '../../assets/Closed.svg'
+import './styles.scss'
 
 import { forwardRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -76,52 +78,82 @@ export function AlertDialog() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle textAlign={"center"} style={{fontSize: "1.8rem", marginTop: "20px"}}>
-          {"Você deseja encerrar esta sala?"}
-        </DialogTitle>
-        <DialogContent style={{display: "flex", justifyContent: "center"}}>
+        
+        <DialogContent>
           <DialogContentText 
-            textAlign={"justify"}
+            textAlign={"center"}
             id="alert-dialog-description"
             style={
               {
-                padding: "5px 10px",
-                margin: "20px 25px",
+                padding: "1rem",
+                margin: "2rem 15rem",
                 fontSize: "1.6rem",
+                fontFamily: "Poppins",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "0.5rem"
               }
             }
-          >
-              Ao encerrar esta sala, os demais <br />
-              usuarios não poderão entrar nesta <br />
-              sala ou até mesmo enviar novas perguntas. <br />
-              você tem certeza que deseja prosseguir?
+          >   
+
+              <img src={Closed} alt="" className="img-closed"/>
+
+              <div className="text-modal">
+                <strong>Encerrar Sala</strong>
+
+                <p>
+                  Tem certeza que você deseja
+                  encerrar esta sala?
+                </p>
+              </div>
           </DialogContentText>
         </DialogContent>
-        <DialogActions style={{marginInline: "8px"}}>
-          <Button 
+        <DialogActions style={
+            {
+              padding: "10px", 
+              marginBottom: "20px",
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center",
+              gap: "1rem"
+            }
+          }
+        >
+          <Button
+            variant="contained"
+            className="button-modal"
             style={
               {
-                color: "#0052a3", 
-                font: "700 1.6rem Roboto",
+                background: "#DBDCDD",
+                color: "#737380", 
+                font: "700 1.8rem Roboto",
                 textTransform: "lowercase",
+                padding: "1.9rem 6.4rem",
               }
             } 
             onClick={handleClose}
           >
             Cancelar
           </Button>
-          <Button 
+          <Button
+            variant="contained"
+            className="button-modal"
             style={
               {
-                color: "#e7405f", 
-                font: "700 1.6rem Roboto",
+                background: "#E73F5D",
+                color: "#fff", 
+                font: "700 1.8rem Roboto",
                 textTransform: "lowercase",
+                padding: "1.9rem 5.5rem",
+                
               }
             }  
             onClick={handleEndRoom} 
             autoFocus
           >
-            Encerrar Sala
+            Sim, encerrar
           </Button>
         </DialogActions>
       </Dialog>

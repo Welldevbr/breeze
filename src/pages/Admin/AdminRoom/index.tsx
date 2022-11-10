@@ -72,10 +72,11 @@ export function AdminRoom()  {
   }
 
   async function handleDeleteQuestion(questionId: string) {
-    if (window.confirm('Você realmente deseja excluir esta pergunta?')){
+    
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
       toast.success('Pergunta excluida com sucesso.')
-    }
+      setOpen(false);
+    
   }
 
   return (
@@ -174,6 +175,7 @@ export function AdminRoom()  {
                               }
                             }
                           >
+                            
                              você tem certeza que deseja <br />
                              deletar esta pergunta da sala?
                           </DialogContentText>

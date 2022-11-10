@@ -26,7 +26,6 @@ type RoomParams = {
 
 export function Room()  {
   const { user } = useAuth()
-  //const userRef = 
 
   const params = useParams<RoomParams>()
   const roomId: string | any = params.id
