@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import logo from '../../../assets/Logo.svg'
 import illustration from '../../../assets/Icon-Chat.svg'
+import trash from '../../../assets/Icon-Excluir.svg'
 
 import { Button } from '../../../components/Button'
 import { RoomCode } from '../../../components/RoomCode'
@@ -160,33 +161,59 @@ export function AdminRoom()  {
                         aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description"
                       >
-                        <DialogTitle textAlign={"center"} style={{fontSize: "1.8rem", marginTop: "20px"}}>
-                          {"Deletar pergunta"}
-                        </DialogTitle>
-                        <DialogContent style={{display: "flex", justifyContent: "center"}}>
+                        <DialogContent>
                           <DialogContentText 
-                            textAlign={"justify"}
+                            textAlign={"center"}
                             id="alert-dialog-description"
                             style={
                               {
-                                padding: "2px 10px",
-                                margin: "20px 25px",
+                                padding: "0.5rem",
+                                margin: "2rem 15rem",
                                 fontSize: "1.6rem",
+                                fontFamily: "Poppins",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                gap: "0.5rem"
                               }
                             }
                           >
-                            
-                             você tem certeza que deseja <br />
-                             deletar esta pergunta da sala?
+                            <img src={trash} alt="lixeira" className="img-trash"/>
+
+                            <div className="text-modal">
+                              <strong>Excluir Pergunta</strong>
+
+                              <p>
+                              Tem certeza que você deseja 
+                              excluir esta pergunta?
+                              </p>
+                            </div>
                           </DialogContentText>
                         </DialogContent>
-                        <DialogActions style={{marginInline: "8px"}}>
-                          <Btn 
+                        <DialogActions 
                             style={
                               {
-                                color: "#0052a3", 
-                                font: "700 1.6rem Roboto",
+                                padding: "10px", 
+                                marginBottom: "20px",
+                                display: "flex", 
+                                alignItems: "center", 
+                                justifyContent: "center",
+                                gap: "1rem"
+                              }
+                            }
+                          >
+                          <Btn 
+                            variant="contained"
+                            className="btn-modal"
+                            style={
+                              {
+                                background: "#DBDCDD",
+                                color: "#737380", 
+                                font: "700 1.8rem Roboto",
                                 textTransform: "lowercase",
+                                padding: "1.9rem 6.4rem",
+                                borderRadius: "8px",
                               }
                             } 
                             onClick={handleClose}
@@ -194,17 +221,22 @@ export function AdminRoom()  {
                             cancelar
                           </Btn>
                           <Btn 
+                            variant="contained"
+                            className="btn-modal"
                             style={
                               {
-                                color: "#e7405f", 
-                                font: "700 1.6rem Roboto",
+                                background: "#E73F5D",
+                                color: "#fff", 
+                                font: "700 1.8rem Roboto",
                                 textTransform: "lowercase",
+                                padding: "1.9rem 5.5rem",
+                                borderRadius: "8px",
                               }
                             }  
                             onClick={() => handleDeleteQuestion(question.id)} 
                             autoFocus
                           >
-                            excluir
+                            sim, excluir
                           </Btn>
                         </DialogActions>
                       </Dialog>

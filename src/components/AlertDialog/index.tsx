@@ -98,7 +98,7 @@ export function AlertDialog() {
             }
           >   
 
-              <img src={Closed} alt="" className="img-closed"/>
+              <img src={Closed} alt="closed" className="img-closed"/>
 
               <div className="text-modal">
                 <strong>Encerrar Sala</strong>
@@ -131,6 +131,7 @@ export function AlertDialog() {
                 font: "700 1.8rem Roboto",
                 textTransform: "lowercase",
                 padding: "1.9rem 6.4rem",
+                borderRadius: "8px",
               }
             } 
             onClick={handleClose}
@@ -147,7 +148,7 @@ export function AlertDialog() {
                 font: "700 1.8rem Roboto",
                 textTransform: "lowercase",
                 padding: "1.9rem 5.5rem",
-                
+                borderRadius: "8px",
               }
             }  
             onClick={handleEndRoom} 

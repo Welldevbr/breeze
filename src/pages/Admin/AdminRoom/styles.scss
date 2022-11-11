@@ -108,5 +108,24 @@ $color-black: #29292e;
       margin-bottom: 1.2rem;
     }
   }
- 
+
+  .btn-modal {
+    transition: filter 0.3s;
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
+}
+
+.btn-modal {
+  transition: filter 0.3s;
+  &:hover {
+    filter: brightness(90%);
+  }
+}
+
+.img-trash {
+  width: 30%;
+  margin-bottom: 1.6rem;
+  margin-top: 2.6rem;
 }
