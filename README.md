@@ -47,7 +47,7 @@ Este projeto foi desenvolvido utilizando:
 - [react-hot-toast](https://github.com/timolins/react-hot-toast)
 - [phosphor-react](https://github.com/phosphor-icons/phosphor-react)
 - [Classnames](https://github.com/JedWatson/classnames)
-
+- [Matrial-UI](https://github.com/mui/material-ui)
 ## 🚀 Começando
 
 ### Requisitos
