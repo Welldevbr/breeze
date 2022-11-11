@@ -32,12 +32,20 @@ export function Room()  {
 
   const [newQuestion, setNewQuestion] = useState('')
   const { questions, title } = useRoom( roomId )
-  
+
+  console.log(    questions  )
+ 
+  useEffect(() => {
+    
+    const questionIsHighLighted = questions.find(question => question.isHighLighted === true)
+
+
+  }, [questions])
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault()
 
-    if (newQuestion.trim() == '') {
+    if (newQuestion.trim() === '') {
       toast.error('Por favor informe a sua prgunta!');
       return;
     }
