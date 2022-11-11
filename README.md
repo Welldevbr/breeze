@@ -9,7 +9,7 @@
 </p>
 
 <h1 align="center">
-    <img alt="Breeze ask" title="breezeask" src="https://github.com/Welldevbr/breeze-asks/blob/e9a52825c7828cf1d495e75bec52598f7bc3c4b0/src/assets/cover.svg" />
+    <img alt="Breeze ask" title="breezeask" src="https://github.com/Welldevbr/breeze-ask/blob/master/src/assets/cover.svg" />
 </h1>
 
 <br>
