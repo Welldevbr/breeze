@@ -1,15 +1,14 @@
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import logo from '../../../assets/Logo.svg'
 import illustration from '../../../assets/Icon-Chat.svg'
 import trash from '../../../assets/Icon-Excluir.svg'
 
-import { Button } from '../../../components/Button'
 import { RoomCode } from '../../../components/RoomCode'
 
-import { useAuth } from '../../../hooks/useAuth';
+
 import { useRoom } from '../../../hooks/useRoom'
 
 import './styles.scss'
@@ -18,7 +17,6 @@ import { Question } from '../../../components/Question';
 import { database } from '../../../services/firebase';
 import { AlertDialog } from '../../../components/AlertDialog';
 
-import { DialogTitle } from '@mui/material';
 import Btn from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';

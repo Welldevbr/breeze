@@ -51,7 +51,7 @@ export function Question({
                   }
           <div className="author-info">
             <span>{author.name}</span>
-            <small>Setor:</small>
+            {/**<small>Setor:</small>**/}
           </div>
         </div>
         <div>

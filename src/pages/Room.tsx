@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import { database } from '../services/firebase';
@@ -33,14 +33,7 @@ export function Room()  {
   const [newQuestion, setNewQuestion] = useState('')
   const { questions, title } = useRoom( roomId )
 
-  console.log(    questions  )
- 
-  useEffect(() => {
-    
-    const questionIsHighLighted = questions.find(question => question.isHighLighted === true)
 
-
-  }, [questions])
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault()
