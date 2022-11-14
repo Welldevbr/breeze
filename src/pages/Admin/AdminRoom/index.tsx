@@ -48,10 +48,15 @@ export function AdminRoom()  {
   const { questions, title } = useRoom( roomId )
 
   const [open, setOpen] = useState(false);
+  const [questId, setQuestId] = useState('')
 
-  const handleClickOpen = () => {
+  async function handleClickOpen(questionId: string) {
     setOpen(true);
-  };
+    const questionRef: string | any = await database.ref(`rooms/${roomId}/questions/${questionId}`).key
+    console.log(questionRef)
+    setQuestId(questionRef)
+
+  }
 
   const handleClose = () => {
     setOpen(false);
@@ -70,9 +75,9 @@ export function AdminRoom()  {
       })
   }
 
-  async function handleDeleteQuestion(questionId: string) {
+  async function handleDeleteQuestion(questId: any) {
     
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+      await database.ref(`rooms/${roomId}/questions/${questId}`).remove();
       toast.success('Pergunta excluida com sucesso.')
       setOpen(false);
     
@@ -100,12 +105,12 @@ export function AdminRoom()  {
         </div>
 
         <div className="question-list">
-            <ul>
+            
               {
               questions.length >  0 ? (
               questions.map(question => {
                 return (
-                  <li>
+                  
                     <Question
                       key={question.id}
                       content={question.content} 
@@ -143,7 +148,7 @@ export function AdminRoom()  {
                       <button 
                         type='button' 
                         className='delete-button'
-                        onClick={handleClickOpen}
+                        onClick={() => {handleClickOpen(question.id)}}
                       >
                         <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M1 5H3H19" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -231,7 +236,7 @@ export function AdminRoom()  {
                                 borderRadius: "8px",
                               }
                             }  
-                            onClick={() => handleDeleteQuestion(question.id)} 
+                            onClick={() => handleDeleteQuestion(questId)} 
                             autoFocus
                           >
                             sim, excluir
@@ -240,7 +245,7 @@ export function AdminRoom()  {
                       </Dialog>
                     
                     </Question>
-                  </li>
+                  
                 )
               })
               ):(
@@ -256,7 +261,7 @@ export function AdminRoom()  {
               </div>
             )
           }
-            </ul>
+            
         </div>
       </main>
     </div>

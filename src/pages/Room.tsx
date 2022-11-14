@@ -137,13 +137,13 @@ export function Room()  {
             />
           </div>
         </form>
-        <ul>
+        
         {
           questions.length >  0 ? (
             questions.map(question => {
               return (
                 
-                  <li key={question.id}>
+                 
                     <Question
                       key={question.id}
                       content={question.content} 
@@ -169,7 +169,7 @@ export function Room()  {
                       )
                     } 
                     </Question>
-                  </li>
+                  
                 
               )
             })
@@ -186,7 +186,7 @@ export function Room()  {
             </div>
           )
         }
-        </ul>
+        
       </main>
     </div>
   )
