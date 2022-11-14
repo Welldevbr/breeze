@@ -132,16 +132,20 @@ export function AdminRoom()  {
     
                           </button>
 
-                          <button 
-                            type='button' 
-                            className='answer-button'
-                            onClick={() => handleHighlightQuestion(question.id)}
-                          >
-                            <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.0002H16C17.657 15.0002 19 13.6572 19 12.0002V4.00024C19 2.34324 17.657 1.00024 16 1.00024H4C2.343 1.00024 1 2.34324 1 4.00024V12.0002C1 13.6572 2.343 15.0002 4 15.0002H5.5V18.0002L10 15.0002Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                         {!question.isHighLighted && (
+                          <>
+                              <button 
+                                type='button' 
+                                className='answer-button'
+                                onClick={() => handleHighlightQuestion(question.id)}
+                              >
+                                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.0002H16C17.657 15.0002 19 13.6572 19 12.0002V4.00024C19 2.34324 17.657 1.00024 16 1.00024H4C2.343 1.00024 1 2.34324 1 4.00024V12.0002C1 13.6572 2.343 15.0002 4 15.0002H5.5V18.0002L10 15.0002Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
 
-                          </button>
+                              </button>
+                          </>
+                         )}
                         </>
                       )}
 
