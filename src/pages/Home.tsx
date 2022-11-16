@@ -49,19 +49,21 @@ export function Home() {
       return;
     }
 
+    
+
     if (roomRef.val().authorId === user?.id){
       navigate(`/admin/rooms/${roomCode}`)
+    } else if (roomRef.val().endedAt) {
+        toast('Esta sala foi encerrada!', {
+          icon: '😥',
+        });
+        return;
     } else {
       navigate(`/rooms/${roomCode}`)
-
     }
+    
 
-    if (roomRef.val().endedAt) {
-      toast('Esta sala foi encerrada!', {
-        icon: '😥',
-      });
-      return;
-    }
+    
 
   }
   
