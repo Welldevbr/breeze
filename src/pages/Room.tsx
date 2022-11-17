@@ -34,11 +34,13 @@ export function Room()  {
   const { questions, title } = useRoom( roomId )
   const [likes, setLikes] = useState<number | any>(0)
 
+  /*
   useEffect(() => {
     if (likes >= 1){
         questions.map(question => question.isHighLighted = true)
     }
   }, [likes, questions])
+  */
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault()
