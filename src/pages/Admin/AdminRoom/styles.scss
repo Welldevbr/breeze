@@ -139,34 +139,9 @@ $color-black: #29292e;
 
   .questions-answered {
     margin-top: 2rem;
-    position: relative;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: -6%;
-      left: 0;
-      width: 100%;
-      height: 1px;
-     
-      background-color: $color-gray-light;
-    }
   }
 
   .questions-highlighted {
     margin-bottom: 2rem;
-    position: relative;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 105%;
-      left: 0;
-      width: 100%;
-      height: 1px;
-     
-      background-color: $color-primary;
-      opacity: 20%;
-    }
   }
 }
