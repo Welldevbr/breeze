@@ -104,14 +104,333 @@ export function AdminRoom()  {
             }
         </div>
 
-        <div className="questions-highlighted">
+        <div className="questions-list">
+          <div className="questions-highlighted">
+                
+                {
+                  questions.length >  0 && (
+                    questions.map(question => {
+                      const boo = question.isHighLighted && !question.isAnswered;
+                        return (
+                          boo && (
+                            <Question
+                              key={question.id}
+                              content={question.content} 
+                              author={question.author}
+                              isAnswered={question.isAnswered}
+                              isHighLighted={question.isHighLighted}
+                            >
+                              {!question.isAnswered && (
+                                <>
+                                  <button 
+                                    type='button' 
+                                    className='check-button'
+                                    onClick={() => handleCheckeQuestionAsAnswered(question.id)}
+                                  >
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <circle cx="10.0003" cy="10.0002" r="9.00375" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M6.44287 10.3394L8.61077 12.5073L8.59677 12.4933L13.4878 7.60229" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+            
+                                  </button>
+
+                                {!question.isHighLighted && (
+                                  <>
+                                      <button 
+                                        type='button' 
+                                        className='answer-button'
+                                        onClick={() => handleHighlightQuestion(question.id)}
+                                      >
+                                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.0002H16C17.657 15.0002 19 13.6572 19 12.0002V4.00024C19 2.34324 17.657 1.00024 16 1.00024H4C2.343 1.00024 1 2.34324 1 4.00024V12.0002C1 13.6572 2.343 15.0002 4 15.0002H5.5V18.0002L10 15.0002Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+
+                                      </button>
+                                  </>
+                                )}
+                                </>
+                              )}
+
+                              <button 
+                                type='button' 
+                                className='delete-button'
+                                onClick={() => {handleClickOpen(question.id)}}
+                              >
+                                <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M1 5H3H19" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                  <path d="M6 5V3C6 2.46957 6.21071 1.96086 6.58579 1.58579C6.96086 1.21071 7.46957 1 8 1H12C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V5M17 5V19C17 19.5304 16.7893 20.0391 16.4142 20.4142C16.0391 20.7893 15.5304 21 15 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5H17Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </button>
+
+                              <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                TransitionComponent={Transition}
+                                keepMounted
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                              >
+                                <DialogContent>
+                                  <DialogContentText 
+                                    textAlign={"center"}
+                                    id="alert-dialog-description"
+                                    style={
+                                      {
+                                        padding: "0.5rem",
+                                        margin: "2rem 15rem",
+                                        fontSize: "1.6rem",
+                                        fontFamily: "Poppins",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        gap: "0.5rem"
+                                      }
+                                    }
+                                  >
+                                    <img src={trash} alt="lixeira" className="img-trash"/>
+
+                                    <div className="text-modal">
+                                      <strong>Excluir Pergunta</strong>
+
+                                      <p>
+                                      Tem certeza que você deseja 
+                                      excluir esta pergunta?
+                                      </p>
+                                    </div>
+                                  </DialogContentText>
+                                </DialogContent>
+                                <DialogActions 
+                                    style={
+                                      {
+                                        padding: "10px", 
+                                        marginBottom: "20px",
+                                        display: "flex", 
+                                        alignItems: "center", 
+                                        justifyContent: "center",
+                                        gap: "1rem"
+                                      }
+                                    }
+                                  >
+                                  <Btn 
+                                    variant="contained"
+                                    className="btn-modal"
+                                    style={
+                                      {
+                                        background: "#DBDCDD",
+                                        color: "#737380", 
+                                        font: "700 1.8rem Roboto",
+                                        textTransform: "lowercase",
+                                        padding: "1.9rem 6.4rem",
+                                        borderRadius: "8px",
+                                      }
+                                    } 
+                                    onClick={handleClose}
+                                  >
+                                    cancelar
+                                  </Btn>
+                                  <Btn 
+                                    variant="contained"
+                                    className="btn-modal"
+                                    style={
+                                      {
+                                        background: "#E73F5D",
+                                        color: "#fff", 
+                                        font: "700 1.8rem Roboto",
+                                        textTransform: "lowercase",
+                                        padding: "1.9rem 5.5rem",
+                                        borderRadius: "8px",
+                                      }
+                                    }  
+                                    onClick={() => handleDeleteQuestion(questId)} 
+                                    autoFocus
+                                  >
+                                    sim, excluir
+                                  </Btn>
+                                </DialogActions>
+                              </Dialog>
+                            
+                            </Question>
+                          )
+                        )
+                    })
+                  )
+                }
+              
+          </div>
+
+          <div className="questions-normal">
+              
+                {
+                questions.length >  0 ? (
+                  questions.map(question => {
+                    const booleanQuest = !question.isHighLighted && !question.isAnswered;
+                      return (
+                        booleanQuest && (
+                          <Question
+                            key={question.id}
+                            content={question.content} 
+                            author={question.author}
+                            isAnswered={question.isAnswered}
+                            isHighLighted={question.isHighLighted}
+                          >
+                            {!question.isAnswered && (
+                              <>
+                                <button 
+                                  type='button' 
+                                  className='check-button'
+                                  onClick={() => handleCheckeQuestionAsAnswered(question.id)}
+                                >
+                                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10.0003" cy="10.0002" r="9.00375" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6.44287 10.3394L8.61077 12.5073L8.59677 12.4933L13.4878 7.60229" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+          
+                                </button>
+
+                              {!question.isHighLighted && (
+                                <>
+                                    <button 
+                                      type='button' 
+                                      className='answer-button'
+                                      onClick={() => handleHighlightQuestion(question.id)}
+                                    >
+                                      <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.0002H16C17.657 15.0002 19 13.6572 19 12.0002V4.00024C19 2.34324 17.657 1.00024 16 1.00024H4C2.343 1.00024 1 2.34324 1 4.00024V12.0002C1 13.6572 2.343 15.0002 4 15.0002H5.5V18.0002L10 15.0002Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+
+                                    </button>
+                                </>
+                              )}
+                              </>
+                            )}
+
+                            <button 
+                              type='button' 
+                              className='delete-button'
+                              onClick={() => {handleClickOpen(question.id)}}
+                            >
+                              <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 5H3H19" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 5V3C6 2.46957 6.21071 1.96086 6.58579 1.58579C6.96086 1.21071 7.46957 1 8 1H12C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V5M17 5V19C17 19.5304 16.7893 20.0391 16.4142 20.4142C16.0391 20.7893 15.5304 21 15 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5H17Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </button>
+
+                            <Dialog
+                              open={open}
+                              onClose={handleClose}
+                              TransitionComponent={Transition}
+                              keepMounted
+                              aria-labelledby="alert-dialog-title"
+                              aria-describedby="alert-dialog-description"
+                            >
+                              <DialogContent>
+                                <DialogContentText 
+                                  textAlign={"center"}
+                                  id="alert-dialog-description"
+                                  style={
+                                    {
+                                      padding: "0.5rem",
+                                      margin: "2rem 15rem",
+                                      fontSize: "1.6rem",
+                                      fontFamily: "Poppins",
+                                      display: "flex",
+                                      flexDirection: "column",
+                                      justifyContent: "center",
+                                      alignItems: "center",
+                                      gap: "0.5rem"
+                                    }
+                                  }
+                                >
+                                  <img src={trash} alt="lixeira" className="img-trash"/>
+
+                                  <div className="text-modal">
+                                    <strong>Excluir Pergunta</strong>
+
+                                    <p>
+                                    Tem certeza que você deseja 
+                                    excluir esta pergunta?
+                                    </p>
+                                  </div>
+                                </DialogContentText>
+                              </DialogContent>
+                              <DialogActions 
+                                  style={
+                                    {
+                                      padding: "10px", 
+                                      marginBottom: "20px",
+                                      display: "flex", 
+                                      alignItems: "center", 
+                                      justifyContent: "center",
+                                      gap: "1rem"
+                                    }
+                                  }
+                                >
+                                <Btn 
+                                  variant="contained"
+                                  className="btn-modal"
+                                  style={
+                                    {
+                                      background: "#DBDCDD",
+                                      color: "#737380", 
+                                      font: "700 1.8rem Roboto",
+                                      textTransform: "lowercase",
+                                      padding: "1.9rem 6.4rem",
+                                      borderRadius: "8px",
+                                    }
+                                  } 
+                                  onClick={handleClose}
+                                >
+                                  cancelar
+                                </Btn>
+                                <Btn 
+                                  variant="contained"
+                                  className="btn-modal"
+                                  style={
+                                    {
+                                      background: "#E73F5D",
+                                      color: "#fff", 
+                                      font: "700 1.8rem Roboto",
+                                      textTransform: "lowercase",
+                                      padding: "1.9rem 5.5rem",
+                                      borderRadius: "8px",
+                                    }
+                                  }  
+                                  onClick={() => handleDeleteQuestion(questId)} 
+                                  autoFocus
+                                >
+                                  sim, excluir
+                                </Btn>
+                              </DialogActions>
+                            </Dialog>
+                          
+                          </Question>
+                        )
+                      )
+                  })
+                ):(
+                <div className='not-questions'>
+                  <img src={ illustration } alt="" />
+                  <strong>
+                    Nenhuma pergunta por aqui...
+                  </strong>
+                  <span>
+                    Envie o código desta sala para os participantes e <br /> 
+                    comece a responder perguntas!
+                  </span>
+                </div>
+              )
+            }
+              
+          </div>
+
+          <div className="questions-answered">
               
               {
                 questions.length >  0 && (
                 questions.map(question => {
-                  const boo = question.isHighLighted && !question.isAnswered;
                   return (
-                    boo && (
+                    question.isAnswered && (
                       <Question
                         key={question.id}
                         content={question.content} 
@@ -256,328 +575,8 @@ export function AdminRoom()  {
               )
             }
             
+          </div>
         </div>
-        <br />
-
-        <div className="question-list">
-            
-              {
-              questions.length >  0 ? (
-              questions.map(question => {
-                const booleanQuest = !question.isHighLighted && !question.isAnswered;
-                return (
-                  booleanQuest && (
-                    <Question
-                      key={question.id}
-                      content={question.content} 
-                      author={question.author}
-                      isAnswered={question.isAnswered}
-                      isHighLighted={question.isHighLighted}
-                    >
-                      {!question.isAnswered && (
-                        <>
-                          <button 
-                            type='button' 
-                            className='check-button'
-                            onClick={() => handleCheckeQuestionAsAnswered(question.id)}
-                          >
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <circle cx="10.0003" cy="10.0002" r="9.00375" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M6.44287 10.3394L8.61077 12.5073L8.59677 12.4933L13.4878 7.60229" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-    
-                          </button>
-
-                         {!question.isHighLighted && (
-                          <>
-                              <button 
-                                type='button' 
-                                className='answer-button'
-                                onClick={() => handleHighlightQuestion(question.id)}
-                              >
-                                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.0002H16C17.657 15.0002 19 13.6572 19 12.0002V4.00024C19 2.34324 17.657 1.00024 16 1.00024H4C2.343 1.00024 1 2.34324 1 4.00024V12.0002C1 13.6572 2.343 15.0002 4 15.0002H5.5V18.0002L10 15.0002Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                              </button>
-                          </>
-                         )}
-                        </>
-                      )}
-
-                      <button 
-                        type='button' 
-                        className='delete-button'
-                        onClick={() => {handleClickOpen(question.id)}}
-                      >
-                        <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M1 5H3H19" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M6 5V3C6 2.46957 6.21071 1.96086 6.58579 1.58579C6.96086 1.21071 7.46957 1 8 1H12C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V5M17 5V19C17 19.5304 16.7893 20.0391 16.4142 20.4142C16.0391 20.7893 15.5304 21 15 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5H17Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </button>
-
-                      <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        TransitionComponent={Transition}
-                        keepMounted
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
-                      >
-                        <DialogContent>
-                          <DialogContentText 
-                            textAlign={"center"}
-                            id="alert-dialog-description"
-                            style={
-                              {
-                                padding: "0.5rem",
-                                margin: "2rem 15rem",
-                                fontSize: "1.6rem",
-                                fontFamily: "Poppins",
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                gap: "0.5rem"
-                              }
-                            }
-                          >
-                            <img src={trash} alt="lixeira" className="img-trash"/>
-
-                            <div className="text-modal">
-                              <strong>Excluir Pergunta</strong>
-
-                              <p>
-                              Tem certeza que você deseja 
-                              excluir esta pergunta?
-                              </p>
-                            </div>
-                          </DialogContentText>
-                        </DialogContent>
-                        <DialogActions 
-                            style={
-                              {
-                                padding: "10px", 
-                                marginBottom: "20px",
-                                display: "flex", 
-                                alignItems: "center", 
-                                justifyContent: "center",
-                                gap: "1rem"
-                              }
-                            }
-                          >
-                          <Btn 
-                            variant="contained"
-                            className="btn-modal"
-                            style={
-                              {
-                                background: "#DBDCDD",
-                                color: "#737380", 
-                                font: "700 1.8rem Roboto",
-                                textTransform: "lowercase",
-                                padding: "1.9rem 6.4rem",
-                                borderRadius: "8px",
-                              }
-                            } 
-                            onClick={handleClose}
-                          >
-                            cancelar
-                          </Btn>
-                          <Btn 
-                            variant="contained"
-                            className="btn-modal"
-                            style={
-                              {
-                                background: "#E73F5D",
-                                color: "#fff", 
-                                font: "700 1.8rem Roboto",
-                                textTransform: "lowercase",
-                                padding: "1.9rem 5.5rem",
-                                borderRadius: "8px",
-                              }
-                            }  
-                            onClick={() => handleDeleteQuestion(questId)} 
-                            autoFocus
-                          >
-                            sim, excluir
-                          </Btn>
-                        </DialogActions>
-                      </Dialog>
-                    
-                    </Question>
-                  )
-                )
-              })
-              ):(
-              <div className='not-questions'>
-                <img src={ illustration } alt="" />
-                <strong>
-                  Nenhuma pergunta por aqui...
-                </strong>
-                <span>
-                  Envie o código desta sala para os participantes e <br /> 
-                  comece a responder perguntas!
-                </span>
-              </div>
-            )
-          }
-            
-        </div>
-
-        <div className="questions-answered">
-            
-            {
-              questions.length >  0 && (
-              questions.map(question => {
-                return (
-                  question.isAnswered && (
-                    <Question
-                      key={question.id}
-                      content={question.content} 
-                      author={question.author}
-                      isAnswered={question.isAnswered}
-                      isHighLighted={question.isHighLighted}
-                    >
-                      {!question.isAnswered && (
-                        <>
-                          <button 
-                            type='button' 
-                            className='check-button'
-                            onClick={() => handleCheckeQuestionAsAnswered(question.id)}
-                          >
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <circle cx="10.0003" cy="10.0002" r="9.00375" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M6.44287 10.3394L8.61077 12.5073L8.59677 12.4933L13.4878 7.60229" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-    
-                          </button>
-
-                        {!question.isHighLighted && (
-                          <>
-                              <button 
-                                type='button' 
-                                className='answer-button'
-                                onClick={() => handleHighlightQuestion(question.id)}
-                              >
-                                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15.0002H16C17.657 15.0002 19 13.6572 19 12.0002V4.00024C19 2.34324 17.657 1.00024 16 1.00024H4C2.343 1.00024 1 2.34324 1 4.00024V12.0002C1 13.6572 2.343 15.0002 4 15.0002H5.5V18.0002L10 15.0002Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                              </button>
-                          </>
-                        )}
-                        </>
-                      )}
-
-                      <button 
-                        type='button' 
-                        className='delete-button'
-                        onClick={() => {handleClickOpen(question.id)}}
-                      >
-                        <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M1 5H3H19" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M6 5V3C6 2.46957 6.21071 1.96086 6.58579 1.58579C6.96086 1.21071 7.46957 1 8 1H12C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V5M17 5V19C17 19.5304 16.7893 20.0391 16.4142 20.4142C16.0391 20.7893 15.5304 21 15 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5H17Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </button>
-
-                      <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        TransitionComponent={Transition}
-                        keepMounted
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
-                      >
-                        <DialogContent>
-                          <DialogContentText 
-                            textAlign={"center"}
-                            id="alert-dialog-description"
-                            style={
-                              {
-                                padding: "0.5rem",
-                                margin: "2rem 15rem",
-                                fontSize: "1.6rem",
-                                fontFamily: "Poppins",
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                gap: "0.5rem"
-                              }
-                            }
-                          >
-                            <img src={trash} alt="lixeira" className="img-trash"/>
-
-                            <div className="text-modal">
-                              <strong>Excluir Pergunta</strong>
-
-                              <p>
-                              Tem certeza que você deseja 
-                              excluir esta pergunta?
-                              </p>
-                            </div>
-                          </DialogContentText>
-                        </DialogContent>
-                        <DialogActions 
-                            style={
-                              {
-                                padding: "10px", 
-                                marginBottom: "20px",
-                                display: "flex", 
-                                alignItems: "center", 
-                                justifyContent: "center",
-                                gap: "1rem"
-                              }
-                            }
-                          >
-                          <Btn 
-                            variant="contained"
-                            className="btn-modal"
-                            style={
-                              {
-                                background: "#DBDCDD",
-                                color: "#737380", 
-                                font: "700 1.8rem Roboto",
-                                textTransform: "lowercase",
-                                padding: "1.9rem 6.4rem",
-                                borderRadius: "8px",
-                              }
-                            } 
-                            onClick={handleClose}
-                          >
-                            cancelar
-                          </Btn>
-                          <Btn 
-                            variant="contained"
-                            className="btn-modal"
-                            style={
-                              {
-                                background: "#E73F5D",
-                                color: "#fff", 
-                                font: "700 1.8rem Roboto",
-                                textTransform: "lowercase",
-                                padding: "1.9rem 5.5rem",
-                                borderRadius: "8px",
-                              }
-                            }  
-                            onClick={() => handleDeleteQuestion(questId)} 
-                            autoFocus
-                          >
-                            sim, excluir
-                          </Btn>
-                        </DialogActions>
-                      </Dialog>
-                    
-                    </Question>
-                  )
-                )
-              })
-            )
-          }
-          
-      </div>
-      <br />
-      <br />
 
       </main>
     </div>

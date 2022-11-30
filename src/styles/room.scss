@@ -202,8 +202,16 @@ $color-black: #29292e;
       }
     }
     
-    .question-list {
+    .questions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
       margin-bottom: 6rem;
+
+      .questions-answered {
+        margin-top: 2.5rem;
+      }
     }
   }
  
