@@ -24,7 +24,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import { forwardRef, useState } from 'react';
+import { forwardRef, useContext, useState } from 'react';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 
 type RoomParams = {
@@ -45,17 +46,37 @@ export function AdminRoom()  {
   const params = useParams<RoomParams>()
   const roomId: string | any = params.id
 
+  const { user } = useContext(AuthContext)
+
   const { questions, title } = useRoom( roomId )
 
   const [open, setOpen] = useState(false);
   const [questId, setQuestId] = useState('')
 
   async function handleClickOpen(questionId: string) {
-    setOpen(true);
-    const questionRef: string | any = await database.ref(`rooms/${roomId}/questions/${questionId}`).key
-    console.log(questionRef)
-    setQuestId(questionRef)
+    const roomRef = await database.ref(`rooms/${roomId}`).get()
 
+    if (roomRef.val().authorId === user?.id){
+      setOpen(true);
+      const questionRef: string | any = await database.ref(`rooms/${roomId}/questions/${questionId}`).key
+      console.log(questionRef)
+      setQuestId(questionRef)
+    } else {
+      toast.error('Voce não pode realizar esta ação!', {
+        duration: 2000,
+        position: 'top-center',
+
+        icon: '⚠️',
+        
+        //* Style
+        style: {
+          border: '1px solid #fb8b24',
+          background: 'rgba( 255, 255, 255, 0.35 )',
+          backdropFilter: 'blur(13.5px)',
+          WebkitBackdropFilter: 'blur(13.5px)',
+        }
+      })
+    }
   }
 
   const handleClose = () => {
@@ -64,15 +85,53 @@ export function AdminRoom()  {
 
 
   async function handleCheckeQuestionAsAnswered(questionId: string){
+    const roomRef = await database.ref(`rooms/${roomId}`).get()
+
+    if (roomRef.val().authorId === user?.id){
       await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
         isAnswered: true,
       })
+    } else {
+      toast.error('Voce não pode realizar esta ação!', {
+        duration: 2000,
+        position: 'top-center',
+
+        icon: '⚠️',
+        
+        //* Style
+        style: {
+          border: '1px solid #fb8b24',
+          background: 'rgba( 255, 255, 255, 0.35 )',
+          backdropFilter: 'blur(13.5px)',
+          WebkitBackdropFilter: 'blur(13.5px)',
+        }
+      })
+    }
   }
   
   async function handleHighlightQuestion(questionId: string){
+    const roomRef = await database.ref(`rooms/${roomId}`).get()
+
+    if (roomRef.val().authorId === user?.id){
       await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
         isHighLighted: true,
       })
+    } else {
+      toast.error('Voce não pode realizar esta ação!', {
+        duration: 2000,
+        position: 'top-center',
+
+        icon: '⚠️',
+        
+        //* Style
+        style: {
+          border: '1px solid #fb8b24',
+          background: 'rgba( 255, 255, 255, 0.35 )',
+          backdropFilter: 'blur(13.5px)',
+          WebkitBackdropFilter: 'blur(13.5px)',
+        }
+      })
+    }
   }
 
   async function handleDeleteQuestion(questId: any) {

@@ -46,7 +46,18 @@ export function Room()  {
     event.preventDefault()
 
     if (newQuestion.trim() === '') {
-      toast.error('Por favor informe a sua prgunta!');
+      toast.error('Por favor informe a sua prgunta!', {
+        duration: 2000,
+        position: 'top-center',
+        
+        //* Style
+        style: {
+          border: '1px solid #ef233c',
+          background: 'rgba( 255, 255, 255, 0.35 )',
+          backdropFilter: 'blur(13.5px)',
+          WebkitBackdropFilter: 'blur(13.5px)',
+        }
+      });
       return;
     }
 
@@ -65,7 +76,18 @@ export function Room()  {
     }
 
     await database.ref(`rooms/${roomId}/questions`).push(question)
-    toast.success('Pergunta enviada com sucesso 😊');
+    toast.success('Pergunta enviada com sucesso 😊', {
+        duration: 2000,
+        position: 'top-center',
+        
+        //* Style
+        style: {
+          border: '1px solid #52b69a',
+          background: 'rgba( 255, 255, 255, 0.35 )',
+          backdropFilter: 'blur(13.5px)',
+          WebkitBackdropFilter: 'blur(13.5px)',
+        },
+      });
     setNewQuestion('')
   }
 

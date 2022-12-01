@@ -35,9 +35,20 @@ export function Home() {
       await signInWithGoogle()
     }
 
-    if (roomCode.trim() == '') {
+    if (roomCode.trim() === '') {
       toast('Por favor digite o código da sala!', {
         icon: '😕',
+
+        duration: 2000,
+        position: 'top-center',
+        
+        //* Style
+        style: {
+          border: '1px solid #f9c74f',
+          background: 'rgba( 255, 255, 255, 0.35 )',
+          backdropFilter: 'blur(13.5px)',
+          WebkitBackdropFilter: 'blur(13.5px)',
+        }
       });
       return
     }
@@ -45,7 +56,18 @@ export function Home() {
     const roomRef = await database.ref(`rooms/${roomCode}`).get()
 
     if(!roomRef.exists()) {
-      toast.error('Esta sala não existe!');
+      toast.error('Esta sala não existe!', {
+        duration: 2000,
+        position: 'top-center',
+        
+        //* Style
+        style: {
+          border: '1px solid #ef233c',
+          background: 'rgba( 255, 255, 255, 0.35 )',
+          backdropFilter: 'blur(13.5px)',
+          WebkitBackdropFilter: 'blur(13.5px)',
+        }
+      });
       return;
     }
 
@@ -56,6 +78,17 @@ export function Home() {
     } else if (roomRef.val().endedAt) {
         toast('Esta sala foi encerrada!', {
           icon: '😥',
+
+          duration: 2000,
+          position: 'top-center',
+          
+          //* Style
+          style: {
+            border: '1px solid #f9c74f',
+            background: 'rgba( 255, 255, 255, 0.35 )',
+            backdropFilter: 'blur(13.5px)',
+            WebkitBackdropFilter: 'blur(13.5px)',
+          }
         });
         return;
     } else {
@@ -123,8 +156,4 @@ export function Home() {
       </main>
     </div>
   )
-}
-
-function useRoom() {
-  throw new Error('Function not implemented.')
 }
