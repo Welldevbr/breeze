@@ -10,9 +10,11 @@ import { TransitionProps } from '@mui/material/transitions';
 import Closed from '../../assets/Closed.svg'
 import './styles.scss'
 
-import { forwardRef, useState } from 'react';
+import { forwardRef, useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { database } from '../../services/firebase';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../contexts/AuthContext';
 
 type RoomParams = {
   id: string;
@@ -31,14 +33,35 @@ const Transition = forwardRef(function Transition(
 export function AlertDialog() {
   const [open, setOpen] = useState(false);
 
+  const { user } = useContext(AuthContext)
+
   const navigate = useNavigate();
 
   const params = useParams<RoomParams>()
   const roomId: string | any = params.id
 
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  async function handleClickOpen() {
+    const roomRef = await database.ref(`rooms/${roomId}`).get()
+
+    if(roomRef.val().authorId === user?.id){
+      setOpen(true);
+    } else {
+      toast.error('Voce não pode realizar esta ação!', {
+        duration: 2000,
+        position: 'top-center',
+
+        icon: '⚠️',
+        
+        //* Style
+        style: {
+          border: '1px solid #fb8b24',
+          background: 'rgba( 255, 255, 255, 0.35 )',
+          backdropFilter: 'blur(13.5px)',
+          WebkitBackdropFilter: 'blur(13.5px)',
+        }
+      })
+    }
   };
 
   const handleClose = () => {

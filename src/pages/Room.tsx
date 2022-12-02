@@ -52,7 +52,6 @@ export function Room()  {
         
         //* Style
         style: {
-          border: '1px solid #ef233c',
           background: 'rgba( 255, 255, 255, 0.35 )',
           backdropFilter: 'blur(13.5px)',
           WebkitBackdropFilter: 'blur(13.5px)',
@@ -82,7 +81,6 @@ export function Room()  {
         
         //* Style
         style: {
-          border: '1px solid #52b69a',
           background: 'rgba( 255, 255, 255, 0.35 )',
           backdropFilter: 'blur(13.5px)',
           WebkitBackdropFilter: 'blur(13.5px)',
