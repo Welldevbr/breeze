@@ -13,7 +13,7 @@ $color-black: #29292e;
 #page-room-admin {
   header {
     padding: 2.4rem;
-    border-bottom: 1px solid $color-gray-light;
+    
 
     position: fixed;
 
@@ -21,7 +21,7 @@ $color-black: #29292e;
     backdrop-filter: blur(13.5px);
     -webkit-backdrop-filter: blur(13.5px);
 
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
 
     width: 100%;
     top: 0;
@@ -150,12 +150,4 @@ $color-black: #29292e;
   gap: 1rem;
 
   margin-bottom: 6rem;
-
-  .questions-answered {
-    margin-top: 2rem;
-  }
-
-  .questions-highlighted {
-    margin-bottom: 2rem;
-  }
 }

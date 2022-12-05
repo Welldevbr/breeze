@@ -213,6 +213,13 @@ $color-black: #29292e;
       }
     }
   }
+  @media (max-width: 1200px) {
+    aside {
+      display: none;
+    }
+
+    
+  }
     
   }
   
