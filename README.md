@@ -31,7 +31,8 @@
 
 ## 💻 Sobre o projeto
 
-Nesta projeto tomei como base uma aplicção desenvolvida durante a trilha da Next Level Week Together, apresentada dos dias 20 a 27 de Junho de 2021. A principel a aplicação tem o intuito de auxiliar o dinamismo, organização e eficiência, na forma de como os usuarios tiram suas duvidas, durantes reuniões ou apresentações onlines.
+Nesta projeto tomei como base uma aplicação desenvolvida durante a trilha da Next Level Week Together, apresentada dos dias 20 a 27 de Junho de 2021. A 
+princípio a aplicação tem o intuito de auxiliar o dinamismo, organização e eficiência, na forma de como os usuarios tiram suas dúvidas, durantes reuniões ou apresentações onlines.
 
 ## 🧪 Tecnologias
 
